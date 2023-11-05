@@ -85,7 +85,31 @@ describe('Description of suite',()=>{
       var con=textprice===textpricedetail;
       console.log(con);
       expectchai(con).to.be.true;
-      
-
   });
+
+  it('add to bag and validate price',async()=>{
+    let textpricedetail=await rideons.firstpricedetail.getText();
+    textpricedetail=textpricedetail.substring(2);
+    console.log(textpricedetail+"is the price in detail page");
+    await rideons.addtobag.scrollIntoView();
+    await rideons.addtobag.click();
+    let textpricedetailtab=await rideons.priceintable.getText();
+    var matchedArr=textpricedetailtab.match(/\d+/g);
+    console.log(matchedArr[1]+"is the price in table");
+    var con= textpricedetail===matchedArr[1];
+    console.log(con);
+    expectchai(con).to.be.true;
+    await browser.pause(4000);
+    let subtotal=await rideons.textsubtotal.getText();
+    console.log(subtotal+"is total");
+    var subtotalamt=subtotal.match(/\d+/g);
+    await browser.pause(4000);
+    console.log(subtotalamt+"is subtotal amount");
+
+   
+});
+
+
+
+
 })

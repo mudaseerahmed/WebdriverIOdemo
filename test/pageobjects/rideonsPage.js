@@ -37,5 +37,14 @@ get firstprice(){
 get firstpricedetail(){
     return $("//span[@class='mrp-add-text']//following::span[2]");
 }
+get addtobag(){
+    return $("//a[text()='Add to bag ']");
+}
+get priceintable(){
+    return $("//h5[.='Delivery']//preceding::a[1]");
+}
+get textsubtotal(){
+    return $("//h5[contains(text(),'Subtotal')]//following::h5[1]");
+}
 }
 module.exports=new rideonsPage();
