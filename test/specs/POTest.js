@@ -1,4 +1,5 @@
 const expectchai=require('chai').expect
+var assert = require('chai').assert
 const rideons=require('../pageobjects/rideonsPage')
 let text,total;
 
@@ -32,14 +33,34 @@ describe('Description of suite',()=>{
      await browser.pause(4000);
 
     });
+    const num = [];
+    let i,b;
     it('This is the amount before discount',async()=>{
       var price= await rideons.price;
-      for(let i=0;i<price.length;i++){
+      for( i=0;i<price.length;i++){
         //console.log(await price[i].getText());
         let priceamt=await price[i].getText();
         priceamt=priceamt.substring(2);
         console.log(priceamt+"is amt");
+         b = parseInt(priceamt);
+         console.log(b+"is the amt in int");
+         num.push(b);
+    
+
       }
+      console.log(num+"is the value inside array");
+     let length = num.length;
+     for(let i=0;i<length;i++){
+     if(num[i+1]===undefined){
+      break;
+     }
+      let bool=num[i+1]>=num[i];
+      console.log(num[i+1]+"is second value of array");
+      console.log(num[i]+"is the value of array");
+      console.log(bool+"is the value");
+      expectchai(bool).to.be.true;
+     }
+
   
     });
 
