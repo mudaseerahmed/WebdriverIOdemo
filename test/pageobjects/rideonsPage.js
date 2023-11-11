@@ -19,6 +19,13 @@ return $$("//del//following::span[1]");
 get discount(){
     return $$("//del");
 }
+get priceproducts(){
+    return $$("//span[contains(.,'SAVE')]//preceding::span[1]/..");
+}
+
+get pricerange(){
+    return $("//span[contains(.,'SAVE')]//preceding::span[1]/..|//h4/span[@class='rupees-icon']");
+}
 get lowtohigh(){
     return $("//option[contains(text(),'Low to')]");
 }
@@ -45,6 +52,15 @@ get priceintable(){
 }
 get textsubtotal(){
     return $("//h5[contains(text(),'Subtotal')]//following::h5[1]");
+}
+get pricetext(){
+    return $("//div/h4[contains(text(),'price')]");
+}
+get pricefirst(){
+    return $("//div/h4[contains(text(),'price')]//following::div[@class='check-box'][1]/..");
+}
+get pricefirsttext(){
+    return $("//div/h4[contains(text(),'price')]//following::a[1]");
 }
 }
 module.exports=new rideonsPage();
